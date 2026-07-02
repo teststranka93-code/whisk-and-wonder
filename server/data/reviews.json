@@ -1,0 +1,37 @@
+[
+  {
+    "id": "r1",
+    "author": "Martina K.",
+    "rating": 5,
+    "text": "Naša svadobná torta vyzerala lepšie ako inšpiratívna fotka, ktorú sme poslali. Hostia sa stále pýtajú na vrstvu so slaným karamelom.",
+    "productSlug": "salted-caramel-cake"
+  },
+  {
+    "id": "r2",
+    "author": "Jozef H.",
+    "rating": 5,
+    "text": "Croissanty si objednávam každú sobotu bez výnimky. Najlepšie v meste, bez debaty.",
+    "productSlug": "butter-croissant"
+  },
+  {
+    "id": "r3",
+    "author": "Lucia B.",
+    "rating": 5,
+    "text": "Pistáciovo-ružové cupcaky ukradli šou na krstinách mojej dcéry. Jemné, nie príliš sladké, nádherne vyzerajú.",
+    "productSlug": "cupcake-pistachio-rose"
+  },
+  {
+    "id": "r4",
+    "author": "Peter S.",
+    "rating": 4,
+    "text": "Objednal som babku na nedeľné raňajky a zmizla za desať minút. Nabudúce si dám dve.",
+    "productSlug": "cinnamon-babka"
+  },
+  {
+    "id": "r5",
+    "author": "Zuzana M.",
+    "rating": 5,
+    "text": "Whisk & Wonder mi upiekli tortu na 30-tku a bola to najlepšia čokoládová torta, akú som kedy jedla.",
+    "productSlug": "chocolate-hazelnut-cake"
+  }
+]

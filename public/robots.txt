@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /order-confirmation.html
+Disallow: /payment-fail.html
+
+Sitemap: https://whiskandwonder.example/sitemap.xml

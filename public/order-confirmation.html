@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Objednávka potvrdená — Whisk & Wonder</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <svg class="whisk-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4c-4 0-6 3-6 6 0 4 3 6 3 10a3 3 0 1 0 6 0c0-4 3-6 3-10 0-3-2-6-6-6Z" stroke="currentColor" stroke-width="1.8"/><path d="M16 4v6M11 7l2.5 4.5M21 7l-2.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="27" r="1.6" fill="currentColor"/></svg>
+      Whisk &amp; Wonder
+    </a>
+    <nav class="main-nav"><a href="/">Domov</a><a href="/menu.html">Menu</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="container" style="padding:4rem 0;max-width:600px;text-align:center">
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--color-sage);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-size:1.8rem">✓</div>
+    <span class="eyebrow" style="justify-content:center">Platba úspešná</span>
+    <h1>Ďakujeme — už je to v rúre.</h1>
+    <p id="order-summary">Načítavam vašu objednávku…</p>
+    <div class="form-card" id="order-details" style="text-align:left;margin-top:2rem"></div>
+    <a href="/menu.html" class="btn btn-primary" style="margin-top:2rem">Pokračovať v nákupe</a>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><span>© 2026 Whisk & Wonder. Portfóliový demo projekt.</span></div>
+</footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/components.js"></script>
+<script>
+  const order = JSON.parse(sessionStorage.getItem("ww_last_order") || "null");
+  const summary = document.getElementById("order-summary");
+  const details = document.getElementById("order-details");
+  if (!order) {
+    summary.textContent = "Nenašli sme žiadnu nedávnu objednávku.";
+  } else {
+    summary.textContent = `Objednávka ${order.orderId} je potvrdená. Potvrdenie sme poslali na ${order.customer.email}.`;
+    details.innerHTML = `
+      <h3>Objednávka ${order.orderId}</h3>
+      ${order.items.map((i) => `<div class="summary-line"><span>${i.qty} × ${i.name}</span><span>${wwUI.formatPrice(i.price * i.qty, order.currency)}</span></div>`).join("")}
+      <div class="summary-total"><span>Zaplatená suma</span><span>${wwUI.formatPrice(order.total, order.currency)}</span></div>
+      <p style="margin-top:1rem"><strong>Doručiť na:</strong> ${order.customer.name}, ${order.customer.address}</p>
+    `;
+  }
+</script>
+</body>
+</html>

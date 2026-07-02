@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Platba zlyhala — Whisk & Wonder</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:," />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <svg class="whisk-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4c-4 0-6 3-6 6 0 4 3 6 3 10a3 3 0 1 0 6 0c0-4 3-6 3-10 0-3-2-6-6-6Z" stroke="currentColor" stroke-width="1.8"/><path d="M16 4v6M11 7l2.5 4.5M21 7l-2.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="27" r="1.6" fill="currentColor"/></svg>
+      Whisk &amp; Wonder
+    </a>
+    <nav class="main-nav"><a href="/">Domov</a><a href="/menu.html">Menu</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="container" style="padding:4rem 0;max-width:560px;text-align:center">
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--color-danger);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-size:1.8rem">!</div>
+    <span class="eyebrow" style="justify-content:center;color:var(--color-danger)">Platba zlyhala</span>
+    <h1>Vaša platba neprebehla.</h1>
+    <p id="fail-reason">Vaša karta bola zamietnutá. Suma nebola odpísaná — váš košík je stále uložený.</p>
+    <div class="hero-ctas" style="justify-content:center">
+      <a href="/checkout.html" class="btn btn-primary">Skúsiť znova</a>
+      <a href="/cart.html" class="btn btn-secondary">Späť do košíka</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-bottom"><span>© 2026 Whisk & Wonder. Portfóliový demo projekt.</span></div>
+</footer>
+
+<script>
+  const reason = sessionStorage.getItem("ww_last_error");
+  if (reason) document.getElementById("fail-reason").textContent = reason;
+</script>
+</body>
+</html>
