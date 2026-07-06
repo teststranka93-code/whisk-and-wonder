@@ -1,10 +1,14 @@
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const fs = require("fs");
+const { Resend } = require("resend");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL;
 
 const PUBLIC_DIR = path.join(__dirname, "..", "public");
 const DATA_DIR = path.join(__dirname, "data");
@@ -83,13 +87,29 @@ app.post("/api/checkout", (req, res) => {
   res.json(order);
 });
 
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
   if (!name || !email || !message) {
     return res.status(400).json({ error: "Všetky polia sú povinné" });
   }
-  // In production this would send an email / create a CRM lead.
+
   console.log("[contact] new message:", { name, email, message });
+
+  if (resend && NOTIFY_EMAIL) {
+    try {
+      await resend.emails.send({
+        from: "Whisk & Wonder <onboarding@resend.dev>",
+        to: NOTIFY_EMAIL,
+        reply_to: email,
+        subject: `Nová správa z webu od ${name}`,
+        text: `Meno: ${name}\nEmail: ${email}\n\nSpráva:\n${message}`,
+      });
+    } catch (err) {
+      console.error("[contact] failed to send email:", err);
+      return res.status(500).json({ error: "Nepodarilo sa odoslať správu" });
+    }
+  }
+
   res.json({ ok: true });
 });
 
